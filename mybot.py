@@ -15,7 +15,7 @@ def namoz_vaqtlari(m):
     site = "https://islom.uz/prayertimes"
     try:
         page = ul.urlopen(site)
-        bot.send_message(m.chat.id, 'done')
+        #bot.send_message(m.chat.id, 'done')
         soup = BeautifulSoup(page, features='lxml')
         s = []
         for x in soup.find_all('div'):
