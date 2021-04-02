@@ -12,20 +12,24 @@ def namoz_vaqtlari(m):
     text2 = ""
     import urllib.request as ul
     from bs4 import BeautifulSoup
-    site = "https://islom.uz/vaqtlar/27/3"
+    site = "https://islom.uz/prayertimes"
     try:
         page = ul.urlopen(site)
         soup = BeautifulSoup(page, features='lxml')
-        for x in soup.find_all('tr'):
+        s = []
+        for x in soup.find_all('div'):
             clas = " ".join(x.get('class')) if x.get('class')!=None else ""
-            if clas=="p_day bugun":
-                s=x.get_text().split("\n")
+            #print(clas)
+            if clas=="p_clock" or clas=='p_clock c_active':
+                s.append(x.get_text())
 
-        s = s[4:]
-        text2 = f"Bugun:\n {s[0]} - tong\n {s[1]} - bomdod\n {s[2]} - peshin\n {s[3]} - asr\n {s[4]} - shom\n {s[5]} - xufton\n\n https://islom.uz saytidan olindi"
+        #s = s[4:]
+        #print(s)
+        text2 = f"Bugun:\n {s[0]} - bomdod\n {s[1]} - tong\n {s[2]} - peshin\n {s[3]} - asr\n {s[4]} - shom\n {s[5]} - xufton\n\n islom.uz saytidan olindi"
         bot.send_message(m.chat.id, text2)
-    except:
+    except Exception as e:
         bot.send_message(m.chat.id, "Ma`lumot olinmadi, keyinroq urinib ko'ring")
+        bot.send_message(m.chat.id, e)
 
 @bot.message_handler(commands=['jadval'])
 def jadval(m):
@@ -57,7 +61,7 @@ def jadval(m):
                     s+='%s\n' % (xona[k%xl])
                 jadval.append(s)
         day = time.gmtime().tm_wday
-        print(len(jadval))
+        #print(len(jadval))
         if day==6:
             text2 = "dam olish kuni"
         else:
