@@ -1,5 +1,6 @@
 import telebot
-mytoken = "914066529:AAEjK16XuhHzX6amB1mgC31cPFLrda2ZE0c"
+import bottokens
+mytoken = bottokens.bot_token[0]
 bot = telebot.TeleBot(mytoken)
 print("Bot ishga tushdi")
 
@@ -23,10 +24,12 @@ def namoz_vaqtlari(m):
             #print(clas)
             if clas=="p_clock" or clas=='p_clock c_active':
                 s.append(x.get_text())
+            if clas=='p_v':
+                s.append(x.get_text())
 
         #s = s[4:]
         #print(s)
-        text2 = f"Bugun:\n {s[0]} - bomdod\n {s[1]} - quyosh\n {s[2]} - peshin\n {s[3]} - asr\n {s[4]} - shom\n {s[5]} - xufton\n\n islom.uz saytidan olindi"
+        text2 = f"Bugun:\n {s[0]} - {s[1]}\n {s[2]} - {s[3]}\n {s[4]} - {s[5]}\n {s[6]} - {s[7]}\n {s[8]} - {s[9]}\n {s[10]} - {s[11]}\n\n Манба: islom.uz"
         bot.send_message(m.chat.id, text2)
     except Exception as e:
         bot.send_message(m.chat.id, "Ma`lumot olinmadi, keyinroq urinib ko'ring")
