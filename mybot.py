@@ -1,6 +1,6 @@
 import telebot
 import bottokens
-mytoken = bottokens.bot_token[0]
+mytoken = bottokens.bot_token[1]
 bot = telebot.TeleBot(mytoken)
 print("Bot ishga tushdi")
 
