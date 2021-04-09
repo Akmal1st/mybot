@@ -1,6 +1,6 @@
 import telebot
-import bottokens
-mytoken = bottokens.bot_token[1]
+import bt
+mytoken = bottokens.bot_token[0]
 bot = telebot.TeleBot(mytoken)
 print("Bot ishga tushdi")
 
@@ -13,7 +13,7 @@ def namoz_vaqtlari(m):
     text2 = ""
     import urllib.request as ul
     from bs4 import BeautifulSoup
-    site = "https://islom.uz/prayertimes"
+    site = "https://islom.uz/lotin"
     try:
         page = ul.urlopen(site)
         #bot.send_message(m.chat.id, 'done')
@@ -29,7 +29,7 @@ def namoz_vaqtlari(m):
 
         #s = s[4:]
         #print(s)
-        text2 = f"Bugun:\n {s[0]} - {s[1]}\n {s[2]} - {s[3]}\n {s[4]} - {s[5]}\n {s[6]} - {s[7]}\n {s[8]} - {s[9]}\n {s[10]} - {s[11]}\n\n Манба: islom.uz"
+        text2 += f"Bugun:\n {s[0]} - {s[1]}\n {s[2]} - {s[3]}\n {s[4]} - {s[5]}\n {s[6]} - {s[7]}\n {s[8]} - {s[9]}\n {s[10]} - {s[11]}\n\n Манба: islom.uz"
         bot.send_message(m.chat.id, text2)
     except Exception as e:
         bot.send_message(m.chat.id, "Ma`lumot olinmadi, keyinroq urinib ko'ring")
