@@ -1,6 +1,9 @@
 import telebot
-import bt
-mytoken = bt.bot_token[1]
+bot_token = [
+		'1162791156:AAEwW-7TbUbV41eToNsn59n6Oc4V64K7o0w',
+		'914066529:AAFtIzE-4K9Sl89EY3isKJE00ipo6L1VKAA'
+		]
+mytoken = bot_token[1]
 bot = telebot.TeleBot(mytoken)
 print("Bot ishga tushdi")
 
